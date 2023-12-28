@@ -208,7 +208,6 @@ Credit card     0.553055
 Ewallet         0.466667
 """
 
-
 # Analysis of Target Variable with Numerical variables #
 
 df['Customer type'].replace({1: 'Member', 0: 'Normal'}, inplace=True)
@@ -271,3 +270,20 @@ Customer type
 Member         6.940319
 Normal         7.005210
 ###############################"""
+
+# Analysis of Correlation #
+numerical_columns.remove('gross margin percentage')
+
+corr = df[numerical_columns].corr()
+"""            Unit price  Quantity    Tax 5%     Total      cogs  gross income    Rating
+Unit price      1.000000  0.010778  0.633962  0.633962  0.633962      0.633962 -0.008778
+Quantity        0.010778  1.000000  0.705510  0.705510  0.705510      0.705510 -0.015815
+Tax 5%          0.633962  0.705510  1.000000  1.000000  1.000000      1.000000 -0.036442
+Total           0.633962  0.705510  1.000000  1.000000  1.000000      1.000000 -0.036442
+cogs            0.633962  0.705510  1.000000  1.000000  1.000000      1.000000 -0.036442
+gross income    0.633962  0.705510  1.000000  1.000000  1.000000      1.000000 -0.036442
+Rating         -0.008778 -0.015815 -0.036442 -0.036442 -0.036442     -0.036442  1.000000"""
+
+sns.set(rc={"figure.figsize": (12, 12)})
+sns.heatmap(corr, cmap="RdBu")
+plt.show()
