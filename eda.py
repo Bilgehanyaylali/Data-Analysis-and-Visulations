@@ -160,8 +160,8 @@ df["Customer type"].value_counts()
 
 ######################################
 
-def target_sum_cat(dataframe, target, categorical_columns):
-    print(pd.DataFrame({"Target Mean": dataframe.groupby(categorical_columns)[target].mean()}), end="\n\n\n")
+def target_sum_cat(dataframe, target, categorical_column):
+    print(pd.DataFrame({"Target Mean": dataframe.groupby(categorical_column)[target].mean()}), end="\n\n\n")
 
 
 target_sum_cat(df, "Customer type", "Gender")
@@ -213,8 +213,8 @@ Ewallet         0.466667
 df['Customer type'].replace({1: 'Member', 0: 'Normal'}, inplace=True)
 
 
-def target_sum_num(dataframe, target, numerical_columns):
-    print(dataframe.groupby(target).agg({numerical_columns: "mean"}), end="\n\n\n")
+def target_sum_num(dataframe, target, numerical_column):
+    print(dataframe.groupby(target).agg({numerical_column: "mean"}), end="\n\n\n")
     print("###############################")
 
 
