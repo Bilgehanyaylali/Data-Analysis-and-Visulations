@@ -109,8 +109,6 @@ for i in categorical_columns:
     cat_summary2(df, i, plot=True)
 
 
-# I will add graphics visualizations in kaggle #
-
 # Analysis of Numerical Variables #
 
 def num_summary(dataframe, col_name):
@@ -143,8 +141,6 @@ def num_summary2(dataframe, col_name, plot=False):
 
 for i in numerical_columns:
     num_summary2(df, i, plot=True)
-
-# I will add graphics visualizations in kaggle #
 
 #####################################################
 # Analysis of Target Variable with Categorical variables #

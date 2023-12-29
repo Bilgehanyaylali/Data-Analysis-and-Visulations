@@ -6,6 +6,7 @@ pd.set_option("display.max_columns", None)
 pd.set_option('display.expand_frame_repr', False)
 df = pd.read_csv("supermarket.csv")
 ###############################
+
 df.info()
 """class 'pandas.core.frame.DataFrame'>
 RangeIndex: 1000 entries, 0 to 999
@@ -41,7 +42,6 @@ df.shape
 df.size
 # 17000
 
-
 # DATA OVERVIEW #
 
 df.head()
@@ -51,6 +51,7 @@ df.head()
 2  631-41-3108      A     Yangon        Normal    Male      Home and lifestyle       46.33 ...             
 3  123-19-1176      A     Yangon        Member    Male       Health and beauty       58.22 ...           
 4  373-73-7910      A     Yangon        Normal    Male       Sports and travel       86.31 ...  """
+
 df.tail()
 """   Invoice ID Branch       City Customer type  Gender         Product line  Unit price  
 995  233-67-5758      C  Naypyitaw        Normal    Male    Health and beauty       40.35  ...     
@@ -60,7 +61,8 @@ df.tail()
 999  849-09-3807      A     Yangon        Member  Female  Fashion accessories       88.34  ... """
 
 df.columns
-"""Index(['Invoice ID', 'Branch', 'City', 'Customer type', 'Gender',
+"""
+Index(['Invoice ID', 'Branch', 'City', 'Customer type', 'Gender',
        'Product line', 'Unit price', 'Quantity', 'Tax 5%', 'Total', 'Date',
        'Time', 'Payment', 'cogs', 'gross margin percentage', 'gross income',
        'Rating'],
@@ -90,7 +92,8 @@ df.isnull().values
        [False, False, False, ..., False, False, False]])"""
 
 df.isnull().sum()
-"""Invoice ID                 0
+"""
+Invoice ID                 0
 Branch                     0
 City                       0
 Customer type              0
@@ -113,7 +116,7 @@ df.index
 # RangeIndex(start=0, stop=1000, step=1)
 
 df[0:13]
-"""    Invoice ID Branch       City Customer type  Gender            Product line  Unit price  ...
+""" Invoice ID      Branch     City Customer type  Gender            Product line  Unit price  ...
 0   750-67-8428      A     Yangon        Member  Female       Health and beauty       74.69    ...     
 1   226-31-3081      C  Naypyitaw        Normal  Female  Electronic accessories       15.28    ...    
 2   631-41-3108      A     Yangon        Normal    Male      Home and lifestyle       46.33    ...     
@@ -159,7 +162,7 @@ Invoice ID                                                                      
 
 df = df.reset_index(drop=True)
 df.head()
-"""Invoice ID Branch       City Customer type  Gender            Product line  Unit price  ...
+"""Invoice ID     Branch     City Customer type  Gender            Product line  Unit price  ...
 0   750-67-8428      A     Yangon        Member  Female       Health and beauty       74.69    ...     
 1   226-31-3081      C  Naypyitaw        Normal  Female  Electronic accessories       15.28    ...    
 2   631-41-3108      A     Yangon        Normal    Male      Home and lifestyle       46.33    ...     
@@ -178,7 +181,7 @@ print(type(df[["City"]]))
 
 
 print(df.loc[:, df.columns.str.contains("City")].head())
-"""      City
+"""     City
 0     Yangon
 1  Naypyitaw
 2     Yangon
@@ -188,14 +191,15 @@ print(df.loc[:, df.columns.str.contains("City")].head())
 # LOC & ILOC #
 
 df.iloc[0:3]
-"""  Invoice ID Branch       City Customer type  Gender            Product line  Unit price  ...
+"""  Invoice ID Branch      City Customer type  Gender            Product line  Unit price   ...
 0  750-67-8428      A     Yangon        Member  Female       Health and beauty       74.69   ...     
 1  226-31-3081      C  Naypyitaw        Normal  Female  Electronic accessories       15.28   ...      
 2  631-41-3108      A     Yangon        Normal    Male      Home and lifestyle       46.33   ...     
  """
 
 df.iloc[0:3, 0:2]
-"""    Invoice ID Branch
+"""    
+    Invoice ID Branch
 0  750-67-8428      A
 1  226-31-3081      C
 2  631-41-3108      A"""
@@ -210,9 +214,8 @@ Name: Gender, dtype: object"""
 
 # CONDITIONAL EXPRESSIONS #
 
-
 df[df["Unit price"] > 50].head()
-"""   Invoice ID Branch       City Customer type  Gender            Product line  Unit price  ...
+""" Invoice ID  Branch     City   Customer type   Gender            Product line  Unit price  ...
 0  750-67-8428      A     Yangon        Member  Female       Health and beauty       74.69    ...     
 3  123-19-1176      A     Yangon        Member    Male       Health and beauty       58.22    ...     
 4  373-73-7910      A     Yangon        Normal    Male       Sports and travel       86.31    ...     
@@ -243,9 +246,8 @@ dtype: int64"""
 df[df["Unit price"] > 50]["City"].count()
 # 561
 
-
 df.loc[df["Unit price"] > 50, ["Unit price", "City"]].head()
-"""   Unit price       City
+"""   Unit price    City
 0       74.69     Yangon
 3       58.22     Yangon
 4       86.31     Yangon
@@ -253,12 +255,12 @@ df.loc[df["Unit price"] > 50, ["Unit price", "City"]].head()
 6       68.84     Yangon"""
 
 df.loc[(df["Unit price"] > 50) & (df["Branch"] == "A"), ["Unit price", "Payment"]].head()
-"""   Unit price  Payment
+""" Unit price  Payment
 0        74.69  Ewallet
 3        58.22  Ewallet
 4        86.31  Ewallet
 6        68.84  Ewallet
-14       71.38     Cash"""
+14       71.38    Cash"""
 
 # AGGREGATION AND GROUPING #
 
@@ -274,14 +276,14 @@ Yangon       54.780853
 Name: Unit price, dtype: float64"""
 
 df.groupby("Gender").agg({"Unit price": "mean"})
-"""        Unit price
+"""     Unit price
 Gender            
 Female   55.263952
 Male     56.081944"""
 
 df.groupby("Gender").agg({"Unit price": ["mean", "max", "sum", "min", "std"]})
 """       Unit price                                   
-             mean    max       sum    min        std
+         mean    max       sum    min        std
 Gender                                              
 Female  55.263952  99.73  27687.24  10.16  27.194037
 Male    56.081944  99.96  27984.89  10.08  25.794145
@@ -290,7 +292,8 @@ Male    56.081944  99.96  27984.89  10.08  25.794145
 df.groupby("Gender").agg({"Unit price": ["mean", "max", "sum", "min", "std"],
                           "Total": ["mean", "max"],
                           "Product line": "count"})
-"""      Unit price                                          Total          Product line
+"""     
+        Unit price                                         Total          Product line
              mean    max       sum    min        std        mean      max        count
 Gender                                                                                
 Female  55.263952  99.73  27687.24  10.16  27.194037  335.095659  1042.65          501
@@ -301,26 +304,28 @@ Male    56.081944  99.96  27984.89  10.08  25.794145  310.789226  1039.29       
 
 
 df.pivot_table("Rating", "Gender", "City")
-"""City    Mandalay  Naypyitaw    Yangon
+"""
+City    Mandalay  Naypyitaw    Yangon
 Gender                               
 Female  6.876543   7.157865  6.839130
 Male    6.762353   6.972000  7.196089"""
 
 df.pivot_table("Rating", "Gender", "City", aggfunc="std")
-"""City    Mandalay  Naypyitaw    Yangon
+"""
+City    Mandalay  Naypyitaw    Yangon
 Gender                               
 Female  1.825987   1.700638  1.735986
 Male    1.602880   1.709316  1.714425"""
 
 df.pivot_table("Rating", "Gender", ["City", "Customer type"])
-"""City           Mandalay           Naypyitaw              Yangon          
+"""
+City           Mandalay            Naypyitaw             Yangon          
 Customer type    Member    Normal    Member    Normal    Member    Normal
 Gender                                                                   
 Female         6.885882  6.866234  7.117708  7.204878  6.786250  6.891358
 Male           6.647500  6.864444  6.957534  6.985714  7.194253  7.197826"""
 
 # CONCAT AND MERGE #
-
 
 m = np.random.randint(1, 30, size=(5, 5))
 """array([[ 1, 15, 17,  5, 25],

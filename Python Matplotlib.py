@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -5,39 +6,8 @@ import matplotlib.pyplot as plt
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 df = pd.read_csv("supermarket.csv")
-sns.lineplot(x='Branch', y='Gender', data=df)
-df.head()
 
-df.info()
-
-#######################
-# Categorical Variable Visualization
-#######################
-
-df.info()
-"""
- #   Column                   Non-Null Count  Dtype  
----  ------                   --------------  -----  
- 0   Invoice ID               1000 non-null   object 
- 1   Branch                   1000 non-null   object 
- 2   City                     1000 non-null   object 
- 3   Customer type            1000 non-null   object 
- 4   Gender                   1000 non-null   object 
- 5   Product line             1000 non-null   object 
- 6   Unit price               1000 non-null   float64
- 7   Quantity                 1000 non-null   int64  
- 8   Tax 5%                   1000 non-null   float64
- 9   Total                    1000 non-null   float64
- 10  Date                     1000 non-null   object 
- 11  Time                     1000 non-null   object 
- 12  Payment                  1000 non-null   object 
- 13  cogs                     1000 non-null   float64
- 14  gross margin percentage  1000 non-null   float64
- 15  gross income             1000 non-null   float64
- 16  Rating                   1000 non-null   float64
-"""
-
-# 12  Payment                  1000 non-null   object
+# Categorical Variable Visualization #
 
 df['Payment'].value_counts().plot(kind='bar')
 plt.show(block=True)
@@ -46,39 +16,25 @@ plt.show(block=True)
 If you don't get results when you write (plt.show()) this way,
  you should write (plt.show(block=True)) this way."""
 
-#######################
-# Numeric Variable Visualization
-#######################
+sns.lineplot(x='Branch', y='Gender', data=df)
 
-# Quantity                 1000 non-null   int64
+# Numeric Variable Visualization #
 
 plt.hist(df["Quantity"])
 plt.show(block=True)
+###########################
 
 plt.boxplot(df["Quantity"])
 plt.show(block=True)
 
-#######################
-# plot
-#######################
-
-# Now the Pyplot package can be referred to as plt.
-# Draw a line in a diagram from position (0,0) to position (10,230):
-
-import matplotlib.pyplot as plt
-import numpy as np
+# plot #
 
 x = np.array([0, 10])
 y = np.array([0, 230])
 
 plt.plot(x, y)
 plt.show(block=True)
-
-# Example
-# Draw a line in a diagram from position (2, 5) to position (9, 13):
-
-import matplotlib.pyplot as plt
-import numpy as np
+#####################
 
 x = np.array([2, 9])
 y = np.array([5, 13])
@@ -86,18 +42,7 @@ y = np.array([5, 13])
 plt.plot(x, y)
 plt.show(block=True)
 
-#######################
-# Multiple Points
-#######################
-
-# You can plot as many points as you like,
-# just make sure you have the same number of points in both axis.
-
-# Example
-# Draw a line in a diagram from position (2, 3) to (4, 9) then to (6, 3) and finally to position (7, 12):
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Multiple Points #
 
 x = np.array([2, 4, 6, 7])
 y = np.array([3, 9, 3, 12])
@@ -105,9 +50,8 @@ y = np.array([3, 9, 3, 12])
 plt.plot(x, y, "o")
 plt.show(block=True)
 
-#######################
-# Markers
-#######################
+# Markers #
+
 """
 You can use the keyword argument marker to emphasize each point with a specified marker:
 plt.plot(y, marker = '*')
@@ -139,12 +83,6 @@ Marker	Description
 '_'	Hline
 """
 
-# Example
-# Mark each point with a circle:
-
-import matplotlib.pyplot as plt
-import numpy as np
-
 y = np.array([3, 8, 1, 10])
 
 plt.plot(y, 'o:r')
@@ -171,46 +109,21 @@ y = np.array([3, 8, 1, 10])
 plt.plot(y, '|:m')
 plt.show(block=True)
 
-#######################
-# Marker Size
-#######################
-
-# You can use the keyword argument markersize or the shorter version,
-# ms to set the size of the markers:
-
-# Example
-# Set the size of the markers to 20:
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Marker Size #
 
 y = np.array([3, 8, 1, 10])
 
 plt.plot(y, marker='o', ms=20)
 plt.show(block=True)
-#######################
-# Marker Color
-#######################
 
-# You can use the keyword argument markeredgecolor or
-# the shorter mec to set the color of the edge of the markers:
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Marker Color #
 
 x = np.array([3, 8, 1, 10])
 
 plt.plot(x, marker='o', color='c', ms=20, mec='k')
 plt.show(block=True)
 
-#######################
-# linestyle
-#######################
-
-# You can use the keyword argument linestyle, or shorter ls, to change the style of the plotted line:
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Line style #
 
 y = np.array([3, 8, 1, 10])
 
@@ -228,32 +141,14 @@ Style	Or
 'None'	'' or ' '
 """
 
-#######################
-# Line Width
-#######################
-
-"""
-You can use the keyword argument linewidth or the shorter lw to change the width of the line.
-
-The value is a floating number, in points:
-"""
-# Example
-# Plot with a 20.5pt wide line:
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Line Width #
 
 ypoints = np.array([3, 8, 1, 10])
 
 plt.plot(ypoints, linewidth='20.5')
 plt.show(block=True)
 
-#######################
-# Multiple Lines
-#######################
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Multiple Lines #
 
 y1 = np.array([3, 8, 1, 10])
 y2 = np.array([6, 2, 7, 11])
@@ -262,12 +157,7 @@ plt.plot(y1)
 plt.plot(y2)
 
 plt.show(block=True)
-
-# Example
-# Draw two lines by specifiyng the x- and y-point values for both lines:
-
-import matplotlib.pyplot as plt
-import numpy as np
+############################
 
 x1 = np.array([0, 1, 2, 3])
 y1 = np.array([3, 8, 1, 10])
@@ -277,18 +167,11 @@ y2 = np.array([6, 2, 7, 11])
 plt.plot(x1, y1, x2, y2)
 plt.show(block=True)
 
-######
+##################################
 plt.plot(x1, y1, 'o', x2, y2, 'o')
 plt.show(block=True)
 
-#######################
-# Labels
-#######################
-
-# With Pyplot, you can use the xlabel() and ylabel() functions to set a label for the x- and y-axis.
-
-import numpy as np
-import matplotlib.pyplot as plt
+# Labels #
 
 x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
 y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
@@ -300,10 +183,7 @@ plt.ylabel("y axis")
 
 plt.show(block=True)
 
-# With Pyplot, you can use the title() function to set a title for the plot.
-
-import numpy as np
-import matplotlib.pyplot as plt
+#################################
 
 x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
 y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
@@ -316,7 +196,7 @@ plt.ylabel("Calorie Burnage")
 
 plt.show(block=True)
 
-# With Pyplot, you can use the grid() function to add grid lines to the plot.
+#################################
 
 plt.plot(x, y, color='y')
 
@@ -326,14 +206,7 @@ plt.ylabel("Calorie Burnage")
 plt.grid()
 plt.show(block=True)
 
-#######################
-# Subplots
-#######################
-
-# With the subplot() function you can draw multiple plots in one figure:
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Subplots #
 
 # plot 1:
 x = np.array([0, 1, 2, 3])
@@ -351,10 +224,7 @@ plt.plot(x, y)
 
 plt.show(block=True)
 
-# Draw 2 plots on top of each other:
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Draw 2 plots on top of each other #
 
 # plot 1:
 x = np.array([0, 1, 2, 3])
@@ -373,9 +243,6 @@ plt.plot(x, y)
 plt.show(block=True)
 
 # Draw 6 plots:
-
-import matplotlib.pyplot as plt
-import numpy as np
 
 x = np.array([0, 1, 2, 3])
 y = np.array([3, 8, 1, 10])
@@ -415,10 +282,7 @@ plt.plot(x, y)
 
 plt.show(block=True)
 
-# You can add a title to the entire figure with the suptitle() function:
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Adding title #
 
 # plot 1:
 x = np.array([0, 1, 2, 3])
@@ -439,14 +303,9 @@ plt.title("INCOME")
 plt.suptitle("MY SHOP")
 plt.show(block=True)
 
-#############################################
-# Plots
-#############################################
+# Plots #
 
 # Scatter Plots
-
-import matplotlib.pyplot as plt
-import numpy as np
 
 x = np.array([5, 7, 8, 7, 2, 17, 2, 9, 4, 11, 12, 9, 6])
 y = np.array([99, 86, 87, 88, 111, 86, 103, 87, 94, 78, 77, 85, 86])
@@ -454,27 +313,20 @@ y = np.array([99, 86, 87, 88, 111, 86, 103, 87, 94, 78, 77, 85, 86])
 plt.scatter(x, y)
 plt.show(block=True)
 
-# Compare Plots
+# Compare Plots #
 
-import matplotlib.pyplot as plt
-import numpy as np
-
-# day one, the age and speed of 13 cars:
 x = np.array([5, 7, 8, 7, 2, 17, 2, 9, 4, 11, 12, 9, 6])
 y = np.array([99, 86, 87, 88, 111, 86, 103, 87, 94, 78, 77, 85, 86])
 plt.scatter(x, y)
 
-# day two, the age and speed of 15 cars:
+##########################
 x = np.array([2, 2, 8, 1, 15, 8, 12, 9, 7, 3, 11, 4, 7, 14, 12])
 y = np.array([100, 105, 84, 105, 90, 99, 90, 95, 94, 100, 79, 112, 91, 80, 85])
 plt.scatter(x, y)
 
 plt.show(block=True)
 
-# Color Each Dot
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Color Each Dot #
 
 x = np.array([5, 7, 8, 7, 2, 17, 2, 9, 4, 11, 12, 9, 6])
 y = np.array([99, 86, 87, 88, 111, 86, 103, 87, 94, 78, 77, 85, 86])
@@ -486,14 +338,7 @@ plt.scatter(x, y, c=colors)
 
 plt.show(block=True)
 
-# Size
-
-# You can change the size of the dots with the s argument.
-# Just like colors, make sure the array for sizes has the same length as the arrays
-# for the x- and y-axis:
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Size #
 
 x = np.array([5, 7, 8, 7, 2, 17, 2, 9, 4, 11, 12, 9, 6])
 y = np.array([99, 86, 87, 88, 111, 86, 103, 87, 94, 78, 77, 85, 86])
@@ -504,12 +349,7 @@ plt.scatter(x, y, c=colors, s=sizes)
 
 plt.show(block=True)
 
-#############################################
-# Bars
-#############################################
-
-import matplotlib.pyplot as plt
-import numpy as np
+# Bars #
 
 x = np.array(["A", "B", "C", "D"])
 y = np.array([3, 8, 1, 10])
@@ -517,18 +357,10 @@ y = np.array([3, 8, 1, 10])
 plt.bar(x, y)
 plt.show(block=True)
 
-#############################################
-# Histograms
-#############################################
-
-# Example
-import numpy as np
+# Histograms #
 
 x = np.random.normal(170, 10, 250)
-
 print(x)
-
-# It is not possible to see the result with Numpy, but you can use histograms here
 """
 [166.73522397 181.78595292 169.11375494 180.09203908 183.2405537
  166.99765271 173.67730955 155.00041711 181.95825987 169.02682515
@@ -572,31 +404,19 @@ print(x)
  163.4865931  179.61130553 162.5619085  159.83617799 177.90869754
  168.76215983 164.90986183 173.18683746 174.39981942 172.20831969"""
 
-# The histogram chart will allow you to see the result better.
-import matplotlib.pyplot as plt
-import numpy as np
-
 x = np.random.normal(170, 10, 250)
 
 plt.hist(x)
 plt.show(block=True)
 
-#############################################
-# Pie Charts
-#############################################
-# Example 1
-import matplotlib.pyplot as plt
-import numpy as np
+# Pie Charts #
 
 y = np.array([35, 25, 25, 15])
 
 plt.pie(y)
 plt.show(block=True)
 
-# Example 2
-
-import matplotlib.pyplot as plt
-import numpy as np
+##############
 
 y = np.array([35, 25, 25, 15])
 mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
@@ -604,17 +424,8 @@ mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
 plt.pie(y, labels=mylabels)
 plt.show(block=True)
 
-# Explode
-
-"""
-Maybe you want one of the wedges to stand out? The explode parameter allows you to do that.
-
-The explode parameter, if specified, and not None, must be an array with one value for each wedge.
-
-Each value represents how far from the center each wedge is displayed:
-"""
-import matplotlib.pyplot as plt
-import numpy as np
+# Explode#
+ #
 
 y = np.array([35, 25, 25, 15])
 mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
@@ -623,35 +434,18 @@ myexplode = [0.2, 0.5, 0, 0]
 plt.pie(y, labels=mylabels, explode=myexplode)
 plt.show(block=True)
 
-#############################################
-# SEABORN
-#############################################
 
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
+# SEABORN #
 
-pd.set_option('display.max_columns', None)
-pd.set_option('display.width', None)
-df = pd.read_csv("supermarket.csv")
-
-df.head()
-
-df.info()
-
-# I use Seaborn Library
 df["City"].value_counts()
 sns.countplot(x=df["City"], data=df)
 plt.show(block=True)
-#######
 
-# I use Matplotlib Library
+# I use Matplotlib Library #
 df['City'].value_counts().plot(kind='bar')
 plt.show(block=True)
 
-#############################################
-# Numeric Variable Visualization
-#############################################
+# Numeric Variable Visualization #
 
 sns.boxplot(x=df["Total"])
 plt.show(block=True)
@@ -659,4 +453,3 @@ plt.show(block=True)
 df["Total"].hist()
 plt.show(block=True)
 
-df["Customer type"].value_counts()
