@@ -6,182 +6,255 @@ import numpy as np
 
 list_1 = [1, 2, 3, 4]
 list_2 = [2, 3, 4, 5]
+list_3 = []
 
 # Multiplication with loops #
-list_3 = []
 
 for i in range(0, len(list_1)):
     list_3.append(list_1[i] * list_2[i])
-list_3
+# [2, 6, 12, 20]
 
 # Multiplication with numpy # 
 
 list_4 = np.array([1, 2, 3, 4])
 list_5 = np.array([2, 3, 4, 5])
-list_4 * list_5
 
-a = np.array([[1, 2, 3, 4, 5, 6],
-              [9, 8, 7, 6, 5, 4]])
+type(list_4)
+# <class 'numpy.ndarray'>
+
+list_4 * list_5
+# array([ 2,  6, 12, 20])
+
 
 #########################################################################################
 # CREATE NUMPY ARRAY
 #########################################################################################
 
 
-import numpy as np
+np.zeros(10, dtype=int)
+# array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
-np.array([1, 2, 3, 4])
-type(np.array([1, 2, 3, 4]))
+np.ones(10, dtype=int)
+# array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
 
-np.zeros(10, dtype=int)  # 0 dan oluşan, 10 tane int elemanı olan ndarray
+np.random.randint(0, 10, size=10)
+# array([0, 0, 5, 0, 8, 9, 3, 1, 1, 5])
 
-np.ones(10, dtype=int)  # 1 dan oluşan, 10 tane int elemanı olan ndarray
-
-np.random.randint(0, 10, size=10)  # 0-10 arasında 10 tane rastgele sayı üret.
-
-np.random.normal(10, 4, (3, 4))  # ortalaması 10 standart sapması 4 olan 3x4 lük bir ndarray oluştur.
+np.random.normal(10, 4, (3, 4))
+"""array([[ 8.82427406,  9.78916542, 13.46757245,  8.89996122],
+       [ 6.18954645, 12.6304066 ,  3.27862364, 15.79702496],
+       [14.26057143,  7.72192219,  3.56604533,  7.63216262]])"""
 
 #########################################################################################
 # NUMPY ARRAY FEATURES
 #########################################################################################
 
-a = np.random.randint(10, size=5)  # 0-10 arasında 5 tane rastgele sayı üret. default değeri 0 dır.
+a = np.random.randint(10, size=5)
+# array([8, 4, 4, 5, 5])
 
-print(a.dtype)  # elemanların veri tipini ver
-print(a.ndim)  # kaç boyutlu olduğunu ver
-print(a.shape)  # hangi boyutta kaç tane elemanı var (hangi eksende kaç değişken (sütun/özellik) var)
-print(a.size)  # toplamda kaç elemanı olduğunu ver
+print(a.dtype)
+# int32
 
-print("********************************")
+print(a.ndim)
+# 1
 
-# b = np.random.randint(10, size=(5, 6, 3))
+print(a.shape)
+# (5,)
+
+print(a.size)
+# 5
+########################
 b = np.random.randint(10, size=(3, 4, 5))
-# 0-10 arasında 90 tane (x ekseninde 3 tane, y ekseninde 6 tane, z ekseninde 5 tane olacak şekilde) rastgele sayı üret.
+"""array([[[0, 2, 3, 6, 2],
+        [0, 2, 9, 2, 5],
+        [5, 5, 0, 1, 4],
+        [5, 4, 1, 2, 2]],
+        
+       [[6, 5, 1, 0, 8],
+        [9, 3, 0, 7, 7],
+        [9, 8, 3, 9, 2],
+        [8, 9, 1, 1, 9]],
+        
+       [[9, 9, 1, 8, 8],
+        [3, 6, 6, 9, 7],
+        [9, 2, 1, 3, 6],
+        [4, 3, 0, 5, 0]]])"""
 
-print(b)
 print(b.dtype)
-print(b.ndim)
-print(b.shape)
-print(b.size)
+# int32
 
-c = np.random.randint(10, size=(2, 3, 4, 2))
+print(b.ndim)
+# 3
+
+print(b.shape)
+# (3, 4, 5)
+
+print(b.size)
+# 60
+
 
 #########################################################################################
 # RESHAPE
 #########################################################################################
 
-import numpy as np
+list_6 = np.random.randint(1, 10, size=9)
+# array([1, 3, 8, 7, 5, 5, 5, 5, 4])
 
-np.random.randint(1, 10, size=9)  # Tek boyutlu, 1-10 arasında rastgele 9 elemanı olan ndarray
+list_6.reshape(3, 3)
+"""array([[1, 3, 8],
+       [7, 5, 5],
+       [5, 5, 4]])"""
 
-np.random.randint(1, 10, size=9).reshape(3, 3)  # 3x3 lük bir matrise dönüştürelim.
+list_7 = np.random.randint(1, 900, size=100)
+"""array([670, 639, 694, 190, 136, 167, 175, 741, 323,  51, 579, 452, 379,
+       215, 677, 226, 188, 695, 184, 175, 490, 284, 569, 224, 118, 795,
+       324, 519, 123, 226,  36, 887, 209, 114, 145, 893,  93,  73, 277,
+       145, 372, 648, 482, 356, 485, 602, 454, 682, 598, 245, 639, 762,
+       756, 593, 897, 226, 852, 296, 372, 577, 695, 599, 706, 405, 195,
+       298, 667, 744, 639, 820, 494, 379, 443,  30, 530, 783, 899, 386,
+       704, 685,  44, 720, 769, 425, 706, 380, 110, 738, 628, 109, 380,
+       726, 680, 586, 351,  67, 775,  85,  55, 262])"""
 
-np.random.randint(1, 10, size=27).reshape(3, 3, 3)  # 3x3x3 lük bir çok boyutlu bir matrise dönüştürelim.
-
-print("*" * 111)
-
-np.random.randint(1, 900, size=100)  # Tek boyutlu 1-900 arasında rastgele 100 tane elemanı olan bir ndarray oluştur.
-
-np.random.randint(1, 900, size=100).reshape(10, 10)  # bunu 10x10 luk bir matrise dönüştür.
-
-np.random.randint(1, 10, size=1000).reshape(10, 10,
-                                            10)  # 1-10 arasında 1000 tane sayı üret ve bunu 10x10x10 luk bir matrise yerleştir.
+list_7.reshape(10, 10)
+"""array([[670, 639, 694, 190, 136, 167, 175, 741, 323,  51],
+       [579, 452, 379, 215, 677, 226, 188, 695, 184, 175],
+       [490, 284, 569, 224, 118, 795, 324, 519, 123, 226],
+       [ 36, 887, 209, 114, 145, 893,  93,  73, 277, 145],
+       [372, 648, 482, 356, 485, 602, 454, 682, 598, 245],
+       [639, 762, 756, 593, 897, 226, 852, 296, 372, 577],
+       [695, 599, 706, 405, 195, 298, 667, 744, 639, 820],
+       [494, 379, 443,  30, 530, 783, 899, 386, 704, 685],
+       [ 44, 720, 769, 425, 706, 380, 110, 738, 628, 109],
+       [380, 726, 680, 586, 351,  67, 775,  85,  55, 262]])"""
 
 #########################################################################################
 # INDEX OPERATIONS
 #########################################################################################
 
-a = np.random.randint(10, size=10)
+c = np.random.randint(10, size=10)
+# array([2, 2, 2, 3, 6, 0, 7, 7, 4, 4])
 
-a[0]
+c[0]
+# 2
 
-a[0:3]
+c[0:3]
+# array([2, 2, 2])
 
-a[0] = 999
+c[0] = 999
+# array([999,   2,   2,   3,   6,   0,   7,   7,   4,   4])
 
-m = np.random.randint(10, size=(3, 5))  # 0-9 arasında rastgele 3x5 büyüklüğünde matris yap
+m = np.random.randint(10, size=(3, 5))
+"""array([[2, 8, 2, 9, 4],
+       [3, 3, 3, 4, 5],
+       [2, 5, 1, 7, 4]])"""
 
-m[2, 3]  # aynı exceldeki gibi index numarası 2 ve dizinin içinden index numarası 3 olan elemanı ver.
+m[2, 3]
+# 7
 
 m[0, 2] = 111
-m
+"""array([[  2,   8, 111,   9,   4],
+       [  3,   3,   3,   4,   5],
+       [  2,   5,   1,   7,   4]])"""
 
-k = np.random.randint(10, size=(3, 5, 4))  # hangisi hangi eksen. sıralma şöyle olacak: z, x, y
-k
-k[1, 1, 1]
-
-m[
-    0, 2] = 2.9  # numpy "fix type" yani sabit tiptir. bu yüzden 2 olarak yazar. üzerindeki tüm veriler için tek tip veri tipi tutar
-
-m[0:2, 2:4]  # satırlardan 0,1 sütunlardan 2,3 ü al
+k = np.random.randint(10, size=(3, 2, 4))
+"""array([[[8, 7, 6, 5],
+        [9, 3, 9, 1]],
+        
+       [[3, 2, 6, 4],
+        [2, 7, 1, 5]],
+        
+       [[6, 8, 2, 7],
+        [9, 3, 2, 3]]])"""
+k[0, 1, 2]
+# 9
 
 #########################################################################################
 # FANCY INDEX
 #########################################################################################
 
 
-v = np.arange(0, 30, 3)  # 0 dan 30 a kadar 3 lük artışla (muhtemelen ArrayRange in kısaltmasıdır
-v
+v = np.arange(0, 30, 3)
+# array([ 0,  3,  6,  9, 12, 15, 18, 21, 24, 27])
 
-catch = [1, 2, 3]  # indeks numaraları 1,2,3 olan elemanları ver.
+v[[1, 2, 5]]
+# array([ 3,  6, 15])
 
-v[catch]
-
-catch = [5, 2, 9]  # indeks numaraları 5,9 lan elemanları ver.
+v[[0, 4, 6]]
+# array([ 0, 12, 18])
 
 #########################################################################################
 # CONDITIONAL COMPREHENSION
 #########################################################################################
 
 
-v = np.array([1, 2, 3, 4, 5])
-
-# 4 ten küçük olan elemanların olduğu bir liste yap. bunu normal metodlarla yapalım.
+n = np.array([1, 2, 3, 4, 5])
+# array([1, 2, 3, 4, 5])
 
 new = []
-for i in v:
+for i in n:
     if i < 4:
         new.append(i)
+# [1, 2, 3]
 
-# şimdi de bunu numpy ile yapalım.
 
-v < 4  # v nin elemanlarının 4 küçük olanlarını True olmayanlarını False olarak işaretle ve bir dizi olarak döndür
+n < 4
+# array([ True,  True,  True, False, False])
 
-v[v < 4]  # bu durumda da bir ndarray verir. True olanlarını yazacak False diğerlerini yazmayacak
-type(v[v < 4])
+n[n < 4]
+# array([1, 2, 3])
+
 
 #########################################################################################
 # MATHEMATICAL OPERATIONS
 #########################################################################################
 
-import numpy as np
+n = np.array([1, 2, 3, 4, 5])
 
-v = np.array([1, 2, 3, 4, 5])
+n / 5
+# array([0.2, 0.4, 0.6, 0.8, 1. ])
 
-v / 5  # Tüm elemanları 5 e böl ve yeni bir ndarray olarak ver
+n ** 2
+# array([ 1,  4,  9, 16, 25])
 
-v ** 2
+np.subtract(n, 3)
+# array([-2, -1,  0,  1,  2])
 
-np.subtract(v, 1)
-np.add(v, 1)
-np.mean(v)
-np.sum(v)
-np.min(v)
-np.max(v)
-np.var(v)
-np.std(v)
+np.add(n, 5)
+# array([ 6,  7,  8,  9, 10])
 
-# iki bilinmeyenli denklem çözümğ
+np.mean(n)
+# 3.0
 
-# (5 * a) + (1 * b) = 12
-# (1 * a) + (3 * b) = 10
+np.sum(n)
+# 15
 
-x = np.array([[5, 1], [1, 3]])  # birinci denklemin sol taraf katsayıları, ikinci denklemin sol taraf katsayıları
-y = np.array([12, 10])  # birinci denklemin sonucu, ikinci denklemin sonucu
+np.min(n)
+# 1
 
-np.linalg.solve(x, y)  # linear algoritma.
+np.max(n)
+# 5
 
-print(np.__version__)  # numpy versiyonunu verir.
+np.var(n)
+# 2.0
 
+np.std(n)
+# 1.4142135623730951
+
+# Equations with two unknowns #
+
+
+x = np.array([[2, 1], [1, 1]])
+"""array([[2, 1],
+       [1, 1]])"""
+
+y = np.array([12, 10])
+# array([12, 10])
+
+# I find solution for;
+# 2a+b=12
+# a+b=10
+
+np.linalg.solve(x, y).astype(int)
+# array([2, 8])
 
 
