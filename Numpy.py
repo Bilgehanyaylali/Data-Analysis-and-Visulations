@@ -7,14 +7,14 @@ import numpy as np
 list_1 = [1, 2, 3, 4]
 list_2 = [2, 3, 4, 5]
 
-# Bu iki listeyi normal metod ile çarpalım.
+# Multiplication with loops #
 list_3 = []
 
 for i in range(0, len(list_1)):
     list_3.append(list_1[i] * list_2[i])
 list_3
 
-# Numpy ile yapalım
+# Multiplication with numpy # 
 
 list_4 = np.array([1, 2, 3, 4])
 list_5 = np.array([2, 3, 4, 5])
