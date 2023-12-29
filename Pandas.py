@@ -1,431 +1,394 @@
-#########################################################################################
-# IMPORT PANDAS
-#########################################################################################
-
-import pandas as pd
-
-a = pd.Series([10, 77, 12, 4, 5], [1, 2, 3, 4, 5])  # indeksin default değeri 0 dan başlar.
-type(a)
-
-a.index
-a.dtype  # dtype : data type demektir. içindeki datanın tipi demektir.
-a.ndim  # kaç boyutlu (pandas serileri tek boyutludur ve indeks numaraları vardır.)
-a.size  # kaç tane veri var
-a.values  # içindeki itemleri bir array olarak bize verir.
-type(a.values)  # pandas series için valuelara ulaşmak istersek. bize bir ndarray verir.
-
-a.head(2)  # içindeki ilk 2 elemanı ver.
-
-a.tail(2)  # sondan 2 elemanı ver.
-
-#########################################################################################
-# READING DATA
-#########################################################################################
-
-df = pd.read_csv("004 2 Pandas/heightweight.csv")
-df.head()
-
-#########################################################################################
-# DATA OVERVIEW
-#########################################################################################
-
-
-import seaborn as sns
-
-df = sns.load_dataset("titanic")  # sns.load_dataset() seaborn kütüphanesine eklenen dataframelere ulaşabiliriz.
-df.head()
-df.tail()
-df.shape()
-df.info()
-df.columns
-df.index
-df.describe()  # istatistiksel bilgileri verir
-df.describe().T  # özet bilgilerinin transpozesini verir
-df.isnull().values.any()  # toplamda herhangi bir boş değer varsa True döndür
-df.isnull().values  # bir ndarray verir. boş olanları True, olmayaları False döndürür
-df.isnull().sum()  # hangi satırda kaç tane boş varsa onu yazar
-
-df["sex"].head()
-
-df = sns.load_dataset("titanic")
-df.head()
-
-df.index  # indeksleri verir. yani kaç tane satır olduğunu
-
-df[0:13]  # girilen aralıktaki indeksleri (satırları) listeler
-
-df.drop(0, axis=0)  # axis=0 satırı ifade eder. satırdan 0. elamnı sil.
-
-df.drop("sex", axis=1)  # axis=1 sütunu ifade eder. sütunlardan "sex" olanı sil
-
-deleted_index = [1, 3, 5, 7, 9]
-
-df.drop(deleted_index, axis=0).head()  # yukarıda tanımlı indeksleri sil
-
-df.drop(deleted_index, axis=0, inplace=False).head()  # inplace=True olursa ana df de kalıcı yap.
-
-df.index = df["age"]
-df.head()
-
-df.reset_index().head()  # indeksi yeniden oluşturu. 0 dan başlar.
-
-pd.set_option("display.max_columns", None)  # tüm sütunları göster.
-
-df = sns.load_dataset("titanic")
-
-print(df.head())
-
-"age" in df  # df için age diye bir sütun var mı
-
-print(type(df["age"]))  # tek [] ile bir series tipi olur
-print(type(df[["age"]]))  # çift [[]] ile bir dataframe tipi olur
-
-# Sütun isimlerinde "age" kelimesi geçen sütunları listele.
-
-print(df.loc[:, df.columns.str.contains("age")].head())
-
-print(df.loc[:, ~df.columns.str.contains("age")].head())
-# ~ (tilde) değili demek (tersi demek). Yani sütun isminde age kelimesi geçmeyenleri listele
-
-
-#########################################################################################
-# LOC & ILOC
-#########################################################################################
-
-pd.set_option("display.max_columns", None)  # tüm sütunları göster.
-
-df = sns.load_dataset("titanic")
-
-print(df.head())
-
-df.iloc[0:3]
-
-df.iloc[0:3, 0:2]  # excel deki gibi hücre konumları sayısal olarak verilir
-
-df.loc[0:3, "age"]  # sanırım hem sayısal hem de string olarak verilirer. burada 0:3 demek 0,1,2,3 demektir.
-
-df.loc[0:3, 0:2]
-
-#########################################################################################
-# CONDITIONAL EXPRESSIONS
-#########################################################################################
-
-df = sns.load_dataset("titanic")
-
-df[df["age"] > 50].head()  # Yaşı 50 den büyük olanlar
-
-df[df["age"] > 50].count()
-
-df[df["age"] > 50]["age"].count()
-
-df[df["age"] > 50]["deck"].count()
-
-df.loc[df["age"] > 50, ["age", "class"]].head()
-
-df.loc[(df["age"] > 50) & (df["sex"] == "male"), ["age", "class"]].head()
-# birden çok koşul isterken () kullanmak gerekir
-
-#########################################################################################
-# AGGREGATION AND GROUPING
-#########################################################################################
-
-pd.set_option("display.max_columns", None)  # tüm sütunları göster.
-# pd.set_option("Display.with", 500) # sanırım tüm değerleri alta geçmeden veriyor.
-
-df = sns.load_dataset("titanic")
-
-df.head()
-
-df["age"].mean()  # yaş sütununun ortalamasını ver.
-
-df.groupby("sex")["age"].mean()
-# sex stünunu kendi içinde grupla ve o grupların age ortalamasını ver.
-
-df.groupby("sex").agg({"age": "mean"})
-
-df.groupby("sex").agg({"age": ["mean", "max", "sum", "min", "std"]})
-# bu kullanımı alışkanlık haline getir.
-# sex stünunu kendi içinde grupla ve o grupların age ortalamasını, max, sum ... ver.
-
-df.groupby("sex").agg({"age": ["mean", "max", "sum", "min", "std"],
-                       "survived": ["mean", "max"],
-                       "embark_town": "count"})
-
-df.groupby(["sex", "embark_town", "class"]).agg({"age": ["mean", "max", "sum", "min", "std"],
-                                                 "survived": ["mean", "max"],
-                                                 "embark_town": "count"})
-
-#########################################################################################
-# PIVOT TABLE
-#########################################################################################
-
-pd.set_option("Display.width", 500)
-# çıktının alt satıra geçmemesi için. 500 ekranın genişliğini ifade eder. pixel mi????
-
-pd.set_option("display.max_columns", None)  # tüm sütunları göster.
-
-df = sns.load_dataset("titanic")
-
-df.head()
-
-df.pivot_table("survived", "sex", "embarked")
-
-df.pivot_table("survived", "sex", "embarked", aggfunc="std")
-
-df.pivot_table("survived", "sex", ["embarked", "class"])
-
-#########################################################################################
-# CONCAT AND MERGE
-#########################################################################################
-
-m = np.random.randint(1, 30, size=(5, 5))
-m
-
-df_1 = pd.DataFrame(m, columns=["var1", "var2", "var3", "var4", "var5"])
-df_1
-
-df_2 = df_1 * 10
-df_2
-
-# concat ile birleştirme işlemleri
-
-df_3 = pd.concat([df_1, df_2])
-df_3
-
-df_3 = pd.concat([df_1, df_2], ignore_index=True)
-df_3
-# birleştirmeyi alt alta yapar
-
-
-df_4 = pd.concat([df_1, df_2], axis=1)
-df_4
-
-df_5 = pd.concat([df_1, df_2], ignore_index=True, axis=1)
-df_5
-
-df1 = pd.DataFrame({"employees": ["john", "dennis", "mark", "maria"],
-                    "group": ["accounting", "engineering", "engineering", "hr"]})
-
-df2 = pd.DataFrame({"employees": ["john", "dennis", "mark", "maria"],
-                    "start_date": [2010, 2009, 2014, 2019]})
-
-df1
-
-df2
-
-pd.concat([df1, df2])
-
-pd.merge(df1, df2)
-# hangi sütuna göre birleştirme yapacağını vermediğimiz halde "employes" olarak kendisi seçti.
-
-df3 = pd.merge(df1, df2, on="employees")
-# on= ile  hangi sütun ile birleştirme yapacağını belirtiriz.
-
-
-df4 = pd.DataFrame({"group": ["accounting", "engineering", "hr"],
-                    "manager": ["Caner", "Mustafa", "Berkcan"]})
-
-# her çalışanın müdür bilgisine ulaşmak istersek
-# birleştirme işlemleri daha çok sql tarafından yapılır.
-pd.merge(df3, df4)
-
-#########################################################################################
-#########################################################################################
-#########################################################################################
-#########################################################################################
-#########################################################################################
-#########################################################################################
-
-#########################################################################################
-# IMPORT PANDAS AND DATA READING
-#########################################################################################
-
+# IMPORT PANDAS AND DATA READING #
 import numpy as np
 import pandas as pd
 
 pd.set_option("display.max_columns", None)
-pd.set_option('display.expand_frame_repr', False)  # tüm satıları aynı hizada göster
+pd.set_option('display.expand_frame_repr', False)
 df = pd.read_csv("supermarket.csv")
-
+###############################
 df.info()
+"""class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1000 entries, 0 to 999
+Data columns (total 17 columns):
+ #   Column                   Non-Null Count  Dtype  
+---  ------                   --------------  -----  
+ 0   Invoice ID               1000 non-null   object 
+ 1   Branch                   1000 non-null   object 
+ 2   City                     1000 non-null   object 
+ 3   Customer type            1000 non-null   object 
+ 4   Gender                   1000 non-null   object 
+ 5   Product line             1000 non-null   object 
+ 6   Unit price               1000 non-null   float64
+ 7   Quantity                 1000 non-null   int64  
+ 8   Tax 5%                   1000 non-null   float64
+ 9   Total                    1000 non-null   float64
+ 10  Date                     1000 non-null   object 
+ 11  Time                     1000 non-null   object 
+ 12  Payment                  1000 non-null   object 
+ 13  cogs                     1000 non-null   float64
+ 14  gross margin percentage  1000 non-null   float64
+ 15  gross income             1000 non-null   float64
+ 16  Rating                   1000 non-null   float64
+dtypes: float64(7), int64(1), object(9)
+memory usage: 132.9+ KB"""
 
-df.ndim  # kaç boyutlu olduğunu ver
-df.shape  # hangi boyutta kaç tane elemanı var (hangi eksende kaç değişken (sütun/özellik) var)
-df.size  # toplamda kaç elemanı olduğunu ver
+df.ndim
+# 2
 
-#########################################################################################
-# DATA OVERVIEW
-#########################################################################################
+df.shape
+# (1000, 17)
+
+df.size
+# 17000
+
+
+# DATA OVERVIEW #
 
 df.head()
+""" Invoice ID Branch       City Customer type  Gender            Product line  Unit price ... 
+0  750-67-8428      A     Yangon        Member  Female       Health and beauty       74.69 ...       
+1  226-31-3081      C  Naypyitaw        Normal  Female  Electronic accessories       15.28 ...        
+2  631-41-3108      A     Yangon        Normal    Male      Home and lifestyle       46.33 ...             
+3  123-19-1176      A     Yangon        Member    Male       Health and beauty       58.22 ...           
+4  373-73-7910      A     Yangon        Normal    Male       Sports and travel       86.31 ...  """
 df.tail()
-df.shape()
-df.info()
+"""   Invoice ID Branch       City Customer type  Gender         Product line  Unit price  
+995  233-67-5758      C  Naypyitaw        Normal    Male    Health and beauty       40.35  ...     
+996  303-96-2227      B   Mandalay        Normal  Female   Home and lifestyle       97.38  ...     
+997  727-02-1313      A     Yangon        Member    Male   Food and beverages       31.84  ...       
+998  347-56-2442      A     Yangon        Normal    Male   Home and lifestyle       65.82  ...       
+999  849-09-3807      A     Yangon        Member  Female  Fashion accessories       88.34  ... """
+
 df.columns
+"""Index(['Invoice ID', 'Branch', 'City', 'Customer type', 'Gender',
+       'Product line', 'Unit price', 'Quantity', 'Tax 5%', 'Total', 'Date',
+       'Time', 'Payment', 'cogs', 'gross margin percentage', 'gross income',
+       'Rating'],
+      dtype='object')"""
 
-df.describe()  # istatistiksel bilgileri verir
-df.describe().T  # özet bilgilerinin transpozesini verir
-df.isnull().values.any()  # toplamda herhangi bir boş değer varsa True döndür
-df.isnull().values  # bir ndarray verir. boş olanları True, olmayaları False döndürür
-df.isnull().sum()  # hangi satırda kaç tane boş varsa onu yazar
+df.describe().T
+"""                      count        mean           std        min         25%         50%         75%          max
+Unit price               1000.0   55.672130  2.649463e+01  10.080000   32.875000   55.230000   77.935000    99.960000
+Quantity                 1000.0    5.510000  2.923431e+00   1.000000    3.000000    5.000000    8.000000    10.000000
+Tax 5%                   1000.0   15.379369  1.170883e+01   0.508500    5.924875   12.088000   22.445250    49.650000
+Total                    1000.0  322.966749  2.458853e+02  10.678500  124.422375  253.848000  471.350250  1042.650000
+cogs                     1000.0  307.587380  2.341765e+02  10.170000  118.497500  241.760000  448.905000   993.000000
+gross margin percentage  1000.0    4.761905  6.131498e-14   4.761905    4.761905    4.761905    4.761905     4.761905
+gross income             1000.0   15.379369  1.170883e+01   0.508500    5.924875   12.088000   22.445250    49.650000
+Rating                   1000.0    6.972700  1.718580e+00   4.000000    5.500000    7.000000    8.500000    10.000000"""
 
-df.index  # indeksleri verir. yani kaç tane satır olduğunu
+df.isnull().values.any()
+# False
 
-df[0:13]  # girilen aralıktaki indeksleri (satırları) listeler
+df.isnull().values
+"""array([[False, False, False, ..., False, False, False],
+       [False, False, False, ..., False, False, False],
+       [False, False, False, ..., False, False, False],
+       ...,
+       [False, False, False, ..., False, False, False],
+       [False, False, False, ..., False, False, False],
+       [False, False, False, ..., False, False, False]])"""
 
-df.drop(0, axis=0)  # axis=0 satırı ifade eder. satırdan 0. elamnı sil.
+df.isnull().sum()
+"""Invoice ID                 0
+Branch                     0
+City                       0
+Customer type              0
+Gender                     0
+Product line               0
+Unit price                 0
+Quantity                   0
+Tax 5%                     0
+Total                      0
+Date                       0
+Time                       0
+Payment                    0
+cogs                       0
+gross margin percentage    0
+gross income               0
+Rating                     0
+dtype: int64"""
 
-df.drop("City", axis=1)  # axis=1 sütunu ifade eder. sütunlardan "sex" olanı sil
+df.index
+# RangeIndex(start=0, stop=1000, step=1)
 
-deleted_index = [1, 3, 5, 7, 9]
+df[0:13]
+"""    Invoice ID Branch       City Customer type  Gender            Product line  Unit price  ...
+0   750-67-8428      A     Yangon        Member  Female       Health and beauty       74.69    ...     
+1   226-31-3081      C  Naypyitaw        Normal  Female  Electronic accessories       15.28    ...    
+2   631-41-3108      A     Yangon        Normal    Male      Home and lifestyle       46.33    ...     
+3   123-19-1176      A     Yangon        Member    Male       Health and beauty       58.22    ...   
+4   373-73-7910      A     Yangon        Normal    Male       Sports and travel       86.31    ...     
+5   699-14-3026      C  Naypyitaw        Normal    Male  Electronic accessories       85.39    ...    
+6   355-53-5943      A     Yangon        Member  Female  Electronic accessories       68.84    ...    
+7   315-22-5665      C  Naypyitaw        Normal  Female      Home and lifestyle       73.56    ...   
+8   665-32-9167      A     Yangon        Member  Female       Health and beauty       36.26    ...     
+9   692-92-5582      B   Mandalay        Member  Female      Food and beverages       54.84    ...     
+10  351-62-0822      B   Mandalay        Member  Female     Fashion accessories       14.48    ...    
+11  529-56-3974      B   Mandalay        Member    Male  Electronic accessories       25.51    ...    
+12  365-64-0515      A     Yangon        Normal  Female  Electronic accessories       46.95    ...     """
 
-df.drop(deleted_index, axis=0).head()  # yukarıda tanımlı indeksleri sil
+df.drop(0, axis=0)
+"""   Invoice ID Branch       City Customer type  Gender            Product line  Unit price  ...  
+1    226-31-3081      C  Naypyitaw        Normal  Female  Electronic accessories       15.28  ...      
+2    631-41-3108      A     Yangon        Normal    Male      Home and lifestyle       46.33  ...      
+"""
 
-df.drop(deleted_index, axis=0, inplace=False).head()  # inplace=True olursa ana df de kalıcı yap.
+df.drop("City", axis=1)
+"""   Invoice ID    Branch Customer type  Gender       Product line               Unit price  Quantity  ... 
+0    750-67-8428      A        Member     Female       Health and beauty            74.69         7     ...
+1    226-31-3081      C        Normal     Female       Electronic accessories       15.28         5     ...  """
 
-df.head()
+df.drop([1, 3, 5, 7, 9], axis=0).head()
+"""   Invoice ID Branch    City Customer type  Gender            Product line  Unit price ...
+0  750-67-8428      A  Yangon        Member  Female       Health and beauty       74.69   ...   
+2  631-41-3108      A  Yangon        Normal    Male      Home and lifestyle       46.33   ...     
+4  373-73-7910      A  Yangon        Normal    Male       Sports and travel       86.31   ...    
+6  355-53-5943      A  Yangon        Member  Female  Electronic accessories       68.84   ...      
+8  665-32-9167      A  Yangon        Member  Female       Health and beauty       36.26   ...   """
+
 df.index = df["Invoice ID"]
 df.head()
+"""             Invoice ID Branch       City Customer type  Gender            Product line  ...
+Invoice ID                                                                                  ...                                                                                                                           
+750-67-8428  750-67-8428      A     Yangon        Member  Female       Health and beauty    ...   
+226-31-3081  226-31-3081      C  Naypyitaw        Normal  Female  Electronic accessories    ...   
+631-41-3108  631-41-3108      A     Yangon        Normal    Male      Home and lifestyle    ... 
+123-19-1176  123-19-1176      A     Yangon        Member    Male       Health and beauty    ...   
+373-73-7910  373-73-7910      A     Yangon        Normal    Male       Sports and travel    ... """
 
-df.reset_index().head()  # indeksi yeniden oluşturu. 0 dan başlar.
+df = df.reset_index(drop=True)
 df.head()
+"""Invoice ID Branch       City Customer type  Gender            Product line  Unit price  ...
+0   750-67-8428      A     Yangon        Member  Female       Health and beauty       74.69    ...     
+1   226-31-3081      C  Naypyitaw        Normal  Female  Electronic accessories       15.28    ...    
+2   631-41-3108      A     Yangon        Normal    Male      Home and lifestyle       46.33    ...     
+3   123-19-1176      A     Yangon        Member    Male       Health and beauty       58.22    ...   
+4   373-73-7910      A     Yangon        Normal    Male       Sports and travel       86.31    ...     
+5   699-14-3026      C  Naypyitaw        Normal    Male  Electronic accessories       85.39    ...  """
 
-"City" in df  # df için city diye bir sütun var mı
+"City" in df
+# True
 
-print(type(df["City"]))  # tek [] ile bir series tipi olur
-print(type(df[["City"]]))  # çift [[]] ile bir dataframe tipi olur
+print(type(df["City"]))
+# <class 'pandas.core.series.Series'>
 
-# Sütun isimlerinde "City" kelimesi geçen sütunları listele.
+print(type(df[["City"]]))
+# <class 'pandas.core.frame.DataFrame'>
+
 
 print(df.loc[:, df.columns.str.contains("City")].head())
+"""      City
+0     Yangon
+1  Naypyitaw
+2     Yangon
+3     Yangon
+4     Yangon"""
 
-print(df.loc[:, ~df.columns.str.contains("City")].head())
-# ~ (tilde) değili demek (tersi demek). Yani sütun isminde City kelimesi geçmeyenleri listele
-
-
-#########################################################################################
-# LOC & ILOC
-#########################################################################################
-
-
-df.head()
+# LOC & ILOC #
 
 df.iloc[0:3]
+"""  Invoice ID Branch       City Customer type  Gender            Product line  Unit price  ...
+0  750-67-8428      A     Yangon        Member  Female       Health and beauty       74.69   ...     
+1  226-31-3081      C  Naypyitaw        Normal  Female  Electronic accessories       15.28   ...      
+2  631-41-3108      A     Yangon        Normal    Male      Home and lifestyle       46.33   ...     
+ """
 
-df.iloc[0:3, 0:2]  # excel deki gibi hücre konumları sayısal olarak verilir
+df.iloc[0:3, 0:2]
+"""    Invoice ID Branch
+0  750-67-8428      A
+1  226-31-3081      C
+2  631-41-3108      A"""
 
-df.loc[0:3, "City"]  # sanırım hem sayısal hem de string olarak verilirer. burada 0:3 demek 0,1,2,3 demektir.
+df.loc[0:3, "Gender"]
+"""
+0    Female
+1    Female
+2      Male
+3      Male
+Name: Gender, dtype: object"""
 
-df.loc[0:3, 0:2]
+# CONDITIONAL EXPRESSIONS #
 
-#########################################################################################
-# CONDITIONAL EXPRESSIONS
-#########################################################################################
-df.head()
 
-df[df["Unit price"] > 50].head()  # Unit price ı 50 den büyük olanlar
+df[df["Unit price"] > 50].head()
+"""   Invoice ID Branch       City Customer type  Gender            Product line  Unit price  ...
+0  750-67-8428      A     Yangon        Member  Female       Health and beauty       74.69    ...     
+3  123-19-1176      A     Yangon        Member    Male       Health and beauty       58.22    ...     
+4  373-73-7910      A     Yangon        Normal    Male       Sports and travel       86.31    ...     
+5  699-14-3026      C  Naypyitaw        Normal    Male  Electronic accessories       85.39    ...     
+6  355-53-5943      A     Yangon        Member  Female  Electronic accessories       68.84    ... """
 
 df[df["Unit price"] > 50].count()
-
-df[df["Unit price"] > 50]["Unit price"].count()
+"""
+Invoice ID                 561
+Branch                     561
+City                       561
+Customer type              561
+Gender                     561
+Product line               561
+Unit price                 561
+Quantity                   561
+Tax 5%                     561
+Total                      561
+Date                       561
+Time                       561
+Payment                    561
+cogs                       561
+gross margin percentage    561
+gross income               561
+Rating                     561
+dtype: int64"""
 
 df[df["Unit price"] > 50]["City"].count()
+# 561
+
 
 df.loc[df["Unit price"] > 50, ["Unit price", "City"]].head()
+"""   Unit price       City
+0       74.69     Yangon
+3       58.22     Yangon
+4       86.31     Yangon
+5       85.39  Naypyitaw
+6       68.84     Yangon"""
 
 df.loc[(df["Unit price"] > 50) & (df["Branch"] == "A"), ["Unit price", "Payment"]].head()
-# birden çok koşul isterken () kullanmak gerekir
+"""   Unit price  Payment
+0        74.69  Ewallet
+3        58.22  Ewallet
+4        86.31  Ewallet
+6        68.84  Ewallet
+14       71.38     Cash"""
+
+# AGGREGATION AND GROUPING #
 
 
-#########################################################################################
-# AGGREGATION AND GROUPING
-#########################################################################################
-
-
-df.head()
-
-df["Unit price"].mean()  # Unit price ortalamasını ver.
+df["Unit price"].mean()
+# 55.67213
 
 df.groupby("City")["Unit price"].mean()
-# City stünunu kendi içinde grupla ve o grupların Unit price ortalamasını ver.
+"""City
+Mandalay     55.659277
+Naypyitaw    56.609024
+Yangon       54.780853
+Name: Unit price, dtype: float64"""
 
 df.groupby("Gender").agg({"Unit price": "mean"})
+"""        Unit price
+Gender            
+Female   55.263952
+Male     56.081944"""
 
 df.groupby("Gender").agg({"Unit price": ["mean", "max", "sum", "min", "std"]})
-# bu kullanımı alışkanlık haline getir.
-# Gender stünunu kendi içinde grupla ve o grupların Unit price ortalamasını, max, sum ... ver.
+"""       Unit price                                   
+             mean    max       sum    min        std
+Gender                                              
+Female  55.263952  99.73  27687.24  10.16  27.194037
+Male    56.081944  99.96  27984.89  10.08  25.794145
+"""
 
 df.groupby("Gender").agg({"Unit price": ["mean", "max", "sum", "min", "std"],
                           "Total": ["mean", "max"],
                           "Product line": "count"})
+"""      Unit price                                          Total          Product line
+             mean    max       sum    min        std        mean      max        count
+Gender                                                                                
+Female  55.263952  99.73  27687.24  10.16  27.194037  335.095659  1042.65          501
+Male    56.081944  99.96  27984.89  10.08  25.794145  310.789226  1039.29          499
+"""
 
-df.groupby(["sex", "embark_town", "class"]).agg({"age": ["mean", "max", "sum", "min", "std"],
-                                                 "survived": ["mean", "max"],
-                                                 "embark_town": "count"})
+# PIVOT TABLE #
 
-#########################################################################################
-# PIVOT TABLE
-#########################################################################################
-
-df.head()
 
 df.pivot_table("Rating", "Gender", "City")
+"""City    Mandalay  Naypyitaw    Yangon
+Gender                               
+Female  6.876543   7.157865  6.839130
+Male    6.762353   6.972000  7.196089"""
 
 df.pivot_table("Rating", "Gender", "City", aggfunc="std")
+"""City    Mandalay  Naypyitaw    Yangon
+Gender                               
+Female  1.825987   1.700638  1.735986
+Male    1.602880   1.709316  1.714425"""
 
 df.pivot_table("Rating", "Gender", ["City", "Customer type"])
+"""City           Mandalay           Naypyitaw              Yangon          
+Customer type    Member    Normal    Member    Normal    Member    Normal
+Gender                                                                   
+Female         6.885882  6.866234  7.117708  7.204878  6.786250  6.891358
+Male           6.647500  6.864444  6.957534  6.985714  7.194253  7.197826"""
 
-#########################################################################################
-# CONCAT AND MERGE
-#########################################################################################
+# CONCAT AND MERGE #
+
 
 m = np.random.randint(1, 30, size=(5, 5))
-m
+"""array([[ 1, 15, 17,  5, 25],
+       [25,  2, 14, 12, 28],
+       [25, 15, 20, 20, 22],
+       [11, 13,  5, 27, 21],
+       [22, 14, 18, 10, 23]])"""
 
 df_1 = pd.DataFrame(m, columns=["var1", "var2", "var3", "var4", "var5"])
-df_1
+"""   var1  var2  var3  var4  var5
+0     1    15    17     5    25
+1    25     2    14    12    28
+2    25    15    20    20    22
+3    11    13     5    27    21
+4    22    14    18    10    23"""
 
 df_2 = df_1 * 10
-df_2
+"""   var1  var2  var3  var4  var5
+0    10   150   170    50   250
+1   250    20   140   120   280
+2   250   150   200   200   220
+3   110   130    50   270   210
+4   220   140   180   100   230"""
 
-# concat ile birleştirme işlemleri
+##################
 
 df_3 = pd.concat([df_1, df_2])
-df_3
+"""   var1  var2  var3  var4  var5
+0     1    15    17     5    25
+1    25     2    14    12    28
+2    25    15    20    20    22
+3    11    13     5    27    21
+4    22    14    18    10    23
+0    10   150   170    50   250
+1   250    20   140   120   280
+2   250   150   200   200   220
+3   110   130    50   270   210
+4   220   140   180   100   230
+"""
 
 df_3 = pd.concat([df_1, df_2], ignore_index=True)
-df_3
-# birleştirmeyi alt alta yapar
-
+"""   var1  var2  var3  var4  var5
+0     1    15    17     5    25
+1    25     2    14    12    28
+2    25    15    20    20    22
+3    11    13     5    27    21
+4    22    14    18    10    23
+5    10   150   170    50   250
+6   250    20   140   120   280
+7   250   150   200   200   220
+8   110   130    50   270   210
+9   220   140   180   100   230"""
 
 df_4 = pd.concat([df_1, df_2], axis=1)
-df_4
+"""   var1  var2  var3  var4  var5  var1  var2  var3  var4  var5
+0     1    15    17     5    25    10   150   170    50   250
+1    25     2    14    12    28   250    20   140   120   280
+2    25    15    20    20    22   250   150   200   200   220
+3    11    13     5    27    21   110   130    50   270   210
+4    22    14    18    10    23   220   140   180   100   230"""
 
 df_5 = pd.concat([df_1, df_2], ignore_index=True, axis=1)
-df_5
-
-df1 = pd.DataFrame({"employees": ["john", "dennis", "mark", "maria"],
-                    "group": ["accounting", "engineering", "engineering", "hr"]})
-
-df2 = pd.DataFrame({"employees": ["john", "dennis", "mark", "maria"],
-                    "start_date": [2010, 2009, 2014, 2019]})
-
-df1
-
-df2
-
-pd.concat([df1, df2])
-
-pd.merge(df1, df2)
-# hangi sütuna göre birleştirme yapacağını vermediğimiz halde "employes" olarak kendisi seçti.
-
-df3 = pd.merge(df1, df2, on="employees")
-# on= ile  hangi sütun ile birleştirme yapacağını belirtiriz.
+"""   
+    0   1   2   3   4    5    6    7    8    9
+0   1  15  17   5  25   10  150  170   50  250
+1  25   2  14  12  28  250   20  140  120  280
+2  25  15  20  20  22  250  150  200  200  220
+3  11  13   5  27  21  110  130   50  270  210
+4  22  14  18  10  23  220  140  180  100  230"""
 
 
-df4 = pd.DataFrame({"group": ["accounting", "engineering", "hr"],
-                    "manager": ["Caner", "Mustafa", "Berkcan"]})
-
-# her çalışanın müdür bilgisine ulaşmak istersek
-# birleştirme işlemleri daha çok sql tarafından yapılır.
-pd.merge(df3, df4)
