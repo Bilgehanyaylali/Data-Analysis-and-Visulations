@@ -1,4 +1,5 @@
 ADVANCED FUNCTIONAL EXPLORATORY DATA ANALYSIS
+
 Investigative Data Analysis: Influence on Data Science Investigative data analysis
 In the 1970s, the innovative American mathematician John Tukey developed exploratory data analysis, or EDA. 
 As we move forward in time, EDA techniques continue to be a mainstay of the data discovery process and are a commonly used approach. 
