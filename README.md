@@ -22,7 +22,8 @@ Some key features of NumPy include:
 
 What is "Scaler, Vektor, Matrix, Tensor"?
 
-![numpy1](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/306a079a-f710-4d17-8bf7-de42a5fd4c74)
+
+<img src="https://github.com/Bilgehanyaylali/collaboration/assets/151865735/306a079a-f710-4d17-8bf7-de42a5fd4c74" alt="Açıklama metni" width="500">
 
 
 **Scalar:** A scalar is a single, standalone quantity or value without any directional information.
