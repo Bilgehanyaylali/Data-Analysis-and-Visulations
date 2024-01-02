@@ -32,6 +32,41 @@ What is "Scaler, Vektor, Matrix, Tensor"?
 
 **Tensor:** A tensor is a mathematical object that extends the concept of vectors and matrices to multiple dimensions, often used in physics and engineering to represent complex data structures and transformations.
 
+**In section 2 we talk about Pandas.**
+
+![pandas](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/e1e50a81-7dd3-44ae-96c9-e053d8204689)
+
+
+Pandas is a Python library for data analysis and manipulation. It can be used for a variety of tasks, including data cleaning, analysis, filtering, grouping, sorting, and plotting.
+
+Pandas stores data in a tabular format called a DataFrame, which makes data analysis tasks easier to perform. DataFrames are datasets arranged in rows and columns. Each column contains data of the same data type.
+
+Pandas is a widely used library in fields such as data science and machine learning. It is ideal for quickly loading, cleaning, and using data for analytical tasks.
+
+Some of the key features of Pandas include:
+
+Provides tools for loading and manipulating data quickly.
+Provides tools for filtering, grouping, and sorting data.
+Provides tools for analyzing data.
+Provides tools for visually representing data.
+Key Components:
+
+**DataFrame:** A DataFrame is a two-dimensional, tabular data structure with labeled axes (rows and columns). It is capable of holding heterogeneous data types, making it suitable for handling real-world datasets.
+
+**Series:** A Series is a one-dimensional labeled array, essentially a single column of a DataFrame. It can hold any data type and is useful for representing time-series data or individual columns from a dataset.
+
+**Data Cleaning and Preprocessing:** Pandas provides functions to handle missing data, remove duplicates, and perform other data cleaning tasks. It allows for reshaping and transforming datasets with ease.
+
+**Data Alignment:** Pandas supports automatic and explicit data alignment based on labels or integer indices. This feature simplifies working with datasets of different structures.
+
+**GroupBy:** The GroupBy functionality allows users to split data into groups based on some criteria and then apply a function to each group independently. It is a powerful tool for aggregating and analyzing data by categories.
+
+**Merging and Joining:** Pandas supports various methods for combining datasets, including merging and joining. This is particularly useful when dealing with data spread across multiple files or databases.
+
+**Time Series Functionality:** Pandas excels in handling time-series data with features like date range generation, shifting, lagging, and resampling.
+
+**Input/Output Tools:** Pandas supports a wide range of file formats, including CSV, Excel, SQL databases, and more. This makes it easy to import and export data from various sources.
+
 **In section 3 we talk about graphics. How to create different graphics with different examples in Pyhton Matplotlib and Seaborn Library** 
 
 ![matplotlib pyt paint](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/05955629-edcb-437a-9083-b2298ca9f0c5)
