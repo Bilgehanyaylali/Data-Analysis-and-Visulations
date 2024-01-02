@@ -34,7 +34,8 @@ What is "Scaler, Vektor, Matrix, Tensor"?
 
 **In section 2, we talk about Pandas.**
 
-![pandas](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/e1e50a81-7dd3-44ae-96c9-e053d8204689)
+
+<img src="https://github.com/Bilgehanyaylali/collaboration/assets/151865735/e1e50a81-7dd3-44ae-96c9-e053d8204689" alt="Açıklama metni" width="400">
 
 
 Pandas is a Python library for data analysis and manipulation. It can be used for a variety of tasks, including data cleaning, analysis, filtering, grouping, sorting, and plotting.
