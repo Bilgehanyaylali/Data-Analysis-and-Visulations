@@ -1,4 +1,4 @@
-**In section 1 we talk about Numpy.**
+**In section 1, we talk about Numpy.**
 
 ![numpy](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/316f182d-426f-4177-af38-85b1dbcd9fca)
 
@@ -32,7 +32,7 @@ What is "Scaler, Vektor, Matrix, Tensor"?
 
 **Tensor:** A tensor is a mathematical object that extends the concept of vectors and matrices to multiple dimensions, often used in physics and engineering to represent complex data structures and transformations.
 
-**In section 2 we talk about Pandas.**
+**In section 2, we talk about Pandas.**
 
 ![pandas](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/e1e50a81-7dd3-44ae-96c9-e053d8204689)
 
@@ -67,12 +67,12 @@ Key Components:
 
 **Input/Output Tools:** Pandas supports a wide range of file formats, including CSV, Excel, SQL databases, and more. This makes it easy to import and export data from various sources.
 
-**In section 3 we talk about graphics. How to create different graphics with different examples in Pyhton Matplotlib and Seaborn Library** 
+**In section 3, we talk about graphics. How to create different graphics with different examples in Pyhton Matplotlib and Seaborn Library** 
 
 ![matplotlib pyt paint](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/05955629-edcb-437a-9083-b2298ca9f0c5)
 
 
-**In section 4 we talk about Advanced Functional Exploratory Data Analysis**
+**In section 4, we talk about Advanced Functional Exploratory Data Analysis**
 
  ![ADVANCE](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/493bc5ee-dbe7-4f31-8d0c-5048577de604)
 
