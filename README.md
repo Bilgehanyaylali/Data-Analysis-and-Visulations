@@ -7,21 +7,22 @@ NumPy is a library used for scientific computing in the Python programming langu
 
 Some key features of NumPy include:
 
-Multidimensional Arrays: NumPy's primary data structure is multidimensional arrays that can work with homogeneous data types. These arrays are often thought of as vectors or matrices.
+**Multidimensional Arrays:** NumPy's primary data structure is multidimensional arrays that can work with homogeneous data types. These arrays are often thought of as vectors or matrices.
 
-High Performance: NumPy can perform high-performance computations by leveraging low-level routines written in the C language. This makes it suitable for fast operations on large datasets.
+**High Performance:** NumPy can perform high-performance computations by leveraging low-level routines written in the C language. This makes it suitable for fast operations on large datasets.
 
-Mathematical Functions: NumPy encompasses a range of mathematical functions that facilitate mathematical operations. It includes functions for trigonometry, logarithms, exponentials, and other basic mathematical operations.
+**Mathematical Functions:** NumPy encompasses a range of mathematical functions that facilitate mathematical operations. It includes functions for trigonometry, logarithms, exponentials, and other basic mathematical operations.
 
-Random Number Generation: NumPy includes various functions for generating random numbers, which is useful in statistical analysis and simulation studies.
+**Random Number Generation:** NumPy includes various functions for generating random numbers, which is useful in statistical analysis and simulation studies.
 
-Linear Algebra Operations: NumPy provides a set of functions for linear algebra operations. This includes matrix multiplication, determinant calculation, eigenvalue, and eigenvector computation.
+**Linear Algebra Operations:** NumPy provides a set of functions for linear algebra operations. This includes matrix multiplication, determinant calculation, eigenvalue, and eigenvector computation.
 
-Broadcasting: NumPy features broadcasting, allowing operations between arrays of different shapes to be performed easily. This makes mathematical operations more flexible.
+**Broadcasting:** NumPy features broadcasting, allowing operations between arrays of different shapes to be performed easily. This makes mathematical operations more flexible.
 
 What is "Scaler, Vektor, Matrix, Tensor"?
 
-numpy
+![numpy1](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/306a079a-f710-4d17-8bf7-de42a5fd4c74)
+
 
 Scalar: A scalar is a single, standalone quantity or value without any directional information.
 
