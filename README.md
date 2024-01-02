@@ -1,4 +1,7 @@
-n section 1 we talk about Numpy.
+In section 1 we talk about Numpy.
+
+![numpy](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/316f182d-426f-4177-af38-85b1dbcd9fca)
+
 
 NumPy is a library used for scientific computing in the Python programming language. It includes powerful functions for multidimensional arrays and mathematical operations. Additionally, it provides various functionalities such as efficient mathematical functions, linear algebra operations, random number generation, and Fourier transformations.
 
