@@ -35,7 +35,7 @@ What is "Scaler, Vektor, Matrix, Tensor"?
 **In section 2, we talk about Pandas.**
 
 
-<img src="https://github.com/Bilgehanyaylali/collaboration/assets/151865735/e1e50a81-7dd3-44ae-96c9-e053d8204689" alt="Açıklama metni" width="400">
+<img src="https://github.com/Bilgehanyaylali/collaboration/assets/151865735/e1e50a81-7dd3-44ae-96c9-e053d8204689" alt="Açıklama metni" width="500">
 
 
 Pandas is a Python library for data analysis and manipulation. It can be used for a variety of tasks, including data cleaning, analysis, filtering, grouping, sorting, and plotting.
@@ -70,7 +70,7 @@ Key Components:
 
 **In section 3, we talk about graphics. How to create different graphics with different examples in Pyhton Matplotlib and Seaborn Library** 
 
-![matplotlib pyt paint](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/05955629-edcb-437a-9083-b2298ca9f0c5)
+<img src="https://github.com/Bilgehanyaylali/collaboration/assets/151865735/05955629-edcb-437a-9083-b2298ca9f0c5" alt="Açıklama metni" width="500">
 
 
 **In section 4, we talk about Advanced Functional Exploratory Data Analysis**
