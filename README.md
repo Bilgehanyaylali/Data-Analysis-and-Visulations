@@ -1,4 +1,4 @@
-In section 3)Python_Matplotlib.py we talk about graphics. How to create different graphics with different examples in Pyhton Matplotlib and Seaborn library 
+In section 3 we talk about graphics. How to create different graphics with different examples in Pyhton Matplotlib and Seaborn library 
 
 ![matplotlib pyt paint](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/05955629-edcb-437a-9083-b2298ca9f0c5)
 
