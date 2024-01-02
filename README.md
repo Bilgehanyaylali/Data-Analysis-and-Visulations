@@ -1,9 +1,12 @@
-In section 3 we talk about graphics. How to create different graphics with different examples in Pyhton Matplotlib and Seaborn library 
+In section 3 we talk about graphics. How to create different graphics with different examples in Pyhton Matplotlib and Seaborn Library 
 
 ![matplotlib pyt paint](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/05955629-edcb-437a-9083-b2298ca9f0c5)
 
 
- In section 4)Advanced_Functional(EDA).py we talk about Advanced Functional Exploratory Data Analysis
+ In section 4 we talk about Advanced Functional Exploratory Data Analysis
+
+ ![ADVANCE](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/493bc5ee-dbe7-4f31-8d0c-5048577de604)
+
 
 What Is It?
 A crucial step in data analysis is exploratory data analysis (EDA), which entails a dataset's initial inspection and investigation. 
