@@ -1,4 +1,4 @@
-In section 1 we talk about Numpy.
+**In section 1 we talk about Numpy.**
 
 ![numpy](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/316f182d-426f-4177-af38-85b1dbcd9fca)
 
@@ -24,25 +24,25 @@ What is "Scaler, Vektor, Matrix, Tensor"?
 ![numpy1](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/306a079a-f710-4d17-8bf7-de42a5fd4c74)
 
 
-Scalar: A scalar is a single, standalone quantity or value without any directional information.
+**Scalar:** A scalar is a single, standalone quantity or value without any directional information.
 
-Vector: A vector is a mathematical entity that represents both magnitude and direction, commonly used to describe physical quantities like velocity or force.
+**Vector:** A vector is a mathematical entity that represents both magnitude and direction, commonly used to describe physical quantities like velocity or force.
 
-Matrix: A matrix is a two-dimensional arrangement of numbers, symbols, or expressions organized in rows and columns, frequently employed in various fields for data manipulation and solving linear equations.
+**Matrix:** A matrix is a two-dimensional arrangement of numbers, symbols, or expressions organized in rows and columns, frequently employed in various fields for data manipulation and solving linear equations.
 
-Tensor: A tensor is a mathematical object that extends the concept of vectors and matrices to multiple dimensions, often used in physics and engineering to represent complex data structures and transformations.
+**Tensor:** A tensor is a mathematical object that extends the concept of vectors and matrices to multiple dimensions, often used in physics and engineering to represent complex data structures and transformations.
 
-In section 3 we talk about graphics. How to create different graphics with different examples in Pyhton Matplotlib and Seaborn Library 
+**In section 3 we talk about graphics. How to create different graphics with different examples in Pyhton Matplotlib and Seaborn Library** 
 
 ![matplotlib pyt paint](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/05955629-edcb-437a-9083-b2298ca9f0c5)
 
 
- In section 4 we talk about Advanced Functional Exploratory Data Analysis
+**In section 4 we talk about Advanced Functional Exploratory Data Analysis**
 
  ![ADVANCE](https://github.com/Bilgehanyaylali/collaboration/assets/151865735/493bc5ee-dbe7-4f31-8d0c-5048577de604)
 
 
-What Is It?
+**What Is It?**
 A crucial step in data analysis is exploratory data analysis (EDA), which entails a dataset's initial inspection and investigation. 
 Its main goal is to provide an overview of the data's key features, frequently using summary statistics and visualisation, 
 in order to shed light on the data's organisation, trends, and possible problems.
